@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import model.Times;
 
 @Getter
 @Setter
@@ -16,6 +17,6 @@ public class JogadorResponseDTO {
     private String nome;
     private Long salario;
     private Long idtime;
-    private  TimeResponseDTO time;
+    private Times time;
 
 }

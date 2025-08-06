@@ -2,7 +2,7 @@ package mapper;
 
 import dto.JogadorResponseDTO;
 import dto.TimeResponseDTO;
-import model.Time;
+import model.Times;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +14,7 @@ public class TimeMapper {
         this.jogadorMapper = jogadorMapper;
     }
 
-    public TimeResponseDTO timeToDto(Time time)
+    public TimeResponseDTO timeToDto(Times time)
     {
         if (time == null) return null;
 

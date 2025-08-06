@@ -24,6 +24,6 @@ public class Jogador {
     @ManyToOne
     @JoinColumn(name = "times_idtime")
     @JsonBackReference
-    private Time time;
+    private Times time;
 
 }

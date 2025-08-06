@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "times")
-public class Time {
+public class Times {
 
     @Id
     private Long idtime;

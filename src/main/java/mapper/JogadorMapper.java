@@ -15,7 +15,7 @@ public class JogadorMapper {
         {
             dto.setIdtime(jogador.getTime().getIdtime());
         }
-
+        dto.setTime(jogador.getTime());
         return dto;
     }
 
