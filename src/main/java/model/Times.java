@@ -1,6 +1,9 @@
 package model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,13 +21,13 @@ import java.util.List;
 public class Times {
 
     @Id
+    @Column(nullable = false)
     private Long idtime;
+    @NotBlank
     private String nome;
-
-
-    @Column(name = "folhaSalarial")
+    @Column(name = "folhaSalarial", nullable = false)
     private Long folhaSal;
-    @Column(name = "numJogadores")
+    @Column(nullable = false)
     private int numJogadores;
     @OneToMany(mappedBy = "times", cascade = CascadeType.ALL, orphanRemoval= true)
     @JsonManagedReference
@@ -39,7 +42,7 @@ public class Times {
                 total += jogador.getSalario();
             }
         }
-        this.folhaSal =total;
+        this.folhaSal = total;
         this.numJogadores = jogadoresid.size();
 
         System.out.println("Folha salárial: "+ folhaSal +", número jogadores: "+numJogadores);
