@@ -22,5 +22,6 @@ public class JogadorRequestDTO {
     @NotNull(message = "Sálario do jogador é onrigatório!")
     @Min(value = 0, message = "Salário não pode ser negativo")
     private Long salario;
+    @NotNull(message = "O id do time é obrigatório!")
     private Long idTime;
 }

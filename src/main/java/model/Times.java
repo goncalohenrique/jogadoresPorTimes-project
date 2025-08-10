@@ -29,7 +29,7 @@ public class Times {
     private Long folhaSal;
     @Column(nullable = false)
     private int numJogadores;
-    @OneToMany(mappedBy = "times", cascade = CascadeType.ALL, orphanRemoval= true)
+    @OneToMany(mappedBy = "time", cascade = CascadeType.ALL, orphanRemoval= true)
     @JsonManagedReference
     private List<Jogador> jogadoresid = new ArrayList<>() ;
 
@@ -48,4 +48,15 @@ public class Times {
         System.out.println("Folha salárial: "+ folhaSal +", número jogadores: "+numJogadores);
         //printando dados para observação mais facil
     }
+
+    public void adicionarJogador(Jogador jogador) {
+        jogadoresid.add(jogador);
+        atualizarFolhaSalarial();
+    }
+
+    public void removerJogador(Jogador jogador) {
+        jogadoresid.remove(jogador);
+        atualizarFolhaSalarial();
+    }
+
 }
