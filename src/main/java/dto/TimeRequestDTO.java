@@ -18,7 +18,7 @@ public class TimeRequestDTO {
     @NotBlank(message = "Nome não pode ser vazio!")
     private String nome;
 
-    @NotNull(message = "O Id do time deve ser informado")//tratar o metodo de cadastro para nao permitir ids repetidos
-    private Long idtime;
+    /*@NotNull(message = "O Id do time deve ser informado")//tratar o metodo de cadastro para nao permitir ids repetidos
+    private Long idtime;*/
 }
 

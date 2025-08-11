@@ -1,5 +1,6 @@
 package services;
 
+import dto.JogadorRequestDTO;
 import dto.JogadorResponseDTO;
 import dto.TimeRequestDTO;
 import dto.TimeResponseDTO;
@@ -27,8 +28,6 @@ public class TimeServices {
     {
         Times time_cadastrado = new Times();
         time_cadastrado.setNome(timedto.getNome());
-        time_cadastrado.setIdtime(timedto.getIdtime());
-
         return timeRepository.save(time_cadastrado);
     }
 
@@ -46,6 +45,13 @@ public class TimeServices {
        return time.map(timeMapper::time_para_dto);
     }
 
+    public Times atualizar_times_porId(Long id_time, TimeRequestDTO time_atuali_dto)
+    {
+        Times time_existente = timeRepository.findById(id_time)
+                .orElseThrow(()-> new EntityNotFoundException("Time não encontrado!"));
+        time_existente.setNome(time_atuali_dto.getNome());
+        return timeRepository.save(time_existente);
+    }
 
     public void deletar_time_porId(Long id_time)
     {

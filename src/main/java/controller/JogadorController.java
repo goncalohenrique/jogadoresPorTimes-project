@@ -1,8 +1,6 @@
 package controller;
-
 import dto.JogadorRequestDTO;
 import dto.JogadorResponseDTO;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import mapper.JogadorMapper;
 import model.Jogador;
@@ -10,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import services.JogadoresServices;
 
 import java.util.List;
@@ -46,16 +45,17 @@ public class JogadorController {
     public  ResponseEntity<JogadorResponseDTO> buscar_porId(@PathVariable Long id_jogador)
     {
         Optional<JogadorResponseDTO> jogad_dto_optional = jogadoresServices.buscar_jogad_porId(id_jogador);
-        return jogad_dto_optional.map(ResponseEntity::ok) // se presente, retorna 200 OK com o DTO
-                .orElseThrow(()-> new EntityNotFoundException("Jogador não encontrado!")); // se vazio, retorna 404
+        return jogad_dto_optional.map(ResponseEntity::ok) // Se encontrar, retorna 200 OK com o DTO
+                .orElseThrow(()-> new ResponseStatusException
+                        (HttpStatus.NOT_FOUND, "Time não encontrado")); // Se vazio, retorna 404
     }
 
-    @PostMapping("/{id_joga}/atualizar")
+    @PutMapping("/{id_joga}/atualizar")
     public ResponseEntity<JogadorResponseDTO> atualizar_jogador(@PathVariable Long id_joga, @RequestBody @Valid JogadorRequestDTO jogadto )
     {
         Jogador jogador_atualizado = jogadoresServices.atualizar_jogador_porId(id_joga, jogadto);
-        JogadorResponseDTO dto = jogadorMapper.jogador_para_dto(jogador_atualizado);
-        return  ResponseEntity.status(HttpStatus.CREATED).body(dto);
+        JogadorResponseDTO jogador_atuali_dto = jogadorMapper.jogador_para_dto(jogador_atualizado);
+        return  ResponseEntity.ok(jogador_atuali_dto);
     }
 
     @DeleteMapping("/{id_jog}")

@@ -21,12 +21,11 @@
 
         @Id
         @Column(nullable = false)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long idtime;
         @NotBlank
         private String nome;
-        @Column(name = "folhaSalarial", nullable = false)
         private Long folhaSal;
-        @Column(nullable = false)
         private int numJogadores;
         @OneToMany(mappedBy = "time", cascade = CascadeType.ALL, orphanRemoval= true)
         @JsonManagedReference
