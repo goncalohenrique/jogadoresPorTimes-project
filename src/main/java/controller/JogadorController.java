@@ -49,5 +49,19 @@ public class JogadorController {
                 .orElseGet(()-> ResponseEntity.notFound().build()); // se vazio, retorna 404
     }
 
+    @PostMapping("/{id_joga}/atualizar")
+    public ResponseEntity<JogadorResponseDTO> atualizar_jogador(@PathVariable Long id_joga, @RequestBody @Valid JogadorRequestDTO jogadto )
+    {
+        Jogador jogador_atualizado = jogadoresServices.atualizar_jogador_porId(id_joga, jogadto);
+        JogadorResponseDTO dto = jogadorMapper.jogador_para_dto(jogador_atualizado);
+        return  ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    }
+
+    @DeleteMapping("/{id_jog}")
+    public void deletar_jogador(@PathVariable Long id_jog)
+    {
+        jogadoresServices.deletar_jogador_porId(id_jog);
+    }
+
 
 }
