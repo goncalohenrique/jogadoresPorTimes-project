@@ -1,7 +1,9 @@
 package services;
 
 import dto.JogadorRequestDTO;
+import dto.JogadorResponseDTO;
 import jakarta.persistence.EntityNotFoundException;
+import mapper.JogadorMapper;
 import model.Jogador;
 import model.Times;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,15 @@ import org.springframework.stereotype.Service;
 import repository.JogadorRepository;
 import repository.TimeRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class JogadoresServices {
 
     JogadorRepository jogadorRepository;
+    JogadorMapper jogadorMapper;
     TimeRepository timeRepository;
 
     @Autowired
@@ -23,7 +28,7 @@ public class JogadoresServices {
         this.timeRepository = timeRepository;
     }
 
-    public Jogador cadastrar_Jogador(JogadorRequestDTO jogdto)
+    public Jogador cadastrar_jogador(JogadorRequestDTO jogdto)
     {
 
         // Só cadastra o jogador, se o time(id do time) existir e estiver cadastrado no BD
@@ -52,9 +57,18 @@ public class JogadoresServices {
 
     }
 
-    public Optional<Jogador> buscar_jogad_porId(Long idjog)
+    public List<JogadorResponseDTO> buscar_todos_jogadores()
     {
-        return jogadorRepository.findById(idjog);
+        List<Jogador> jogadores = jogadorRepository.findAll();
+        return  jogadores.stream()
+                .map(jogadorMapper:: jogador_para_dto)
+                .collect(Collectors.toList());
+    }
+
+    public Optional<JogadorResponseDTO> buscar_jogad_porId(Long idjog)
+    {
+        Optional<Jogador> jogador = jogadorRepository.findById(idjog);
+        return jogador.map(jogadorMapper::jogador_para_dto);
     }
 
     public Jogador atualizar_jogador_porId(Long idjog, JogadorRequestDTO dto_atualizar) {
@@ -93,6 +107,11 @@ public class JogadoresServices {
         return jogadorRepository.save(jogador_existente);
     }
 
-
+    public void deletar_jogador_porId(Long id_jogador)
+    {
+        Jogador jogador = jogadorRepository.findById(id_jogador)
+                        .orElseThrow(()-> new EntityNotFoundException("Jogador não encontrado!"));
+        jogadorRepository.delete(jogador);
+    }
 
 }

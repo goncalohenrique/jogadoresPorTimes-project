@@ -3,9 +3,12 @@ package mapper;
 import dto.JogadorResponseDTO;
 import model.Jogador;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class JogadorMapper {
 
-    public JogadorResponseDTO jogadorToDto(Jogador jogador) {
+    public JogadorResponseDTO jogador_para_dto(Jogador jogador) {
         JogadorResponseDTO dto = new JogadorResponseDTO();
         dto.setIdjogador(jogador.getIdJogador());
         dto.setNome(jogador.getNome());
@@ -18,5 +21,12 @@ public class JogadorMapper {
         dto.setTime(jogador.getTime());
         return dto;
     }
-//
+
+    public List<JogadorResponseDTO> listaJogadores_para_dto(List<Jogador> lista_jogadores)
+    {
+        return lista_jogadores.stream()
+                .map(this::jogador_para_dto)
+                .collect(Collectors.toList());
+    }
+
 }

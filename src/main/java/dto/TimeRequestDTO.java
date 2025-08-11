@@ -22,13 +22,3 @@ public class TimeRequestDTO {
     private Long idtime;
 }
 
-/*
-public class ContatoRequestDTO {
-
-    private Long idcliente;
-    private Long idcontato;
-    @NotBlank(message = "Email é obrigatório!")
-    private String email;
-    @NotBlank(message = "Telefone é obrigatório!")
-    private String telefone;
- */

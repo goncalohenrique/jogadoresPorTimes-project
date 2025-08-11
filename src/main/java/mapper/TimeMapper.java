@@ -14,7 +14,7 @@ public class TimeMapper {
         this.jogadorMapper = jogadorMapper;
     }
 
-    public TimeResponseDTO timeToDto(Times time)
+    public TimeResponseDTO time_para_dto(Times time)
     {
         if (time == null) return null;
 
@@ -26,11 +26,18 @@ public class TimeMapper {
 
         List<JogadorResponseDTO> jogadoresdto = time.getJogadoresid()
                 .stream()
-                .map(jogadorMapper::jogadorToDto)
+                .map(jogadorMapper::jogador_para_dto)
                 .collect(Collectors.toList());
 
         timedto.setJogadores_list(jogadoresdto);
         return timedto;
+    }
+
+    public List<TimeResponseDTO> listaTimes_para_dto(List<Times> lista_times)
+    {
+        return lista_times.stream()
+                .map(this::time_para_dto)
+                .collect(Collectors.toList());
     }
 
 }
