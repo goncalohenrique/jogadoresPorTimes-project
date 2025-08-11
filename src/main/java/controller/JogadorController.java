@@ -2,6 +2,7 @@ package controller;
 
 import dto.JogadorRequestDTO;
 import dto.JogadorResponseDTO;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import mapper.JogadorMapper;
 import model.Jogador;
@@ -46,7 +47,7 @@ public class JogadorController {
     {
         Optional<JogadorResponseDTO> jogad_dto_optional = jogadoresServices.buscar_jogad_porId(id_jogador);
         return jogad_dto_optional.map(ResponseEntity::ok) // se presente, retorna 200 OK com o DTO
-                .orElseGet(()-> ResponseEntity.notFound().build()); // se vazio, retorna 404
+                .orElseThrow(()-> new EntityNotFoundException("Jogador não encontrado!")); // se vazio, retorna 404
     }
 
     @PostMapping("/{id_joga}/atualizar")
@@ -58,9 +59,9 @@ public class JogadorController {
     }
 
     @DeleteMapping("/{id_jog}")
-    public void deletar_jogador(@PathVariable Long id_jog)
-    {
+    public ResponseEntity<Void> deletar_jogador(@PathVariable Long id_jog) {
         jogadoresServices.deletar_jogador_porId(id_jog);
+        return ResponseEntity.noContent().build(); // Retorna 204 sem corpo
     }
 
 
