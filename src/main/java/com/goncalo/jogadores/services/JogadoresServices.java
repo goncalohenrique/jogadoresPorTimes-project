@@ -1,15 +1,15 @@
-package services;
+package com.goncalo.jogadores.services;
 
-import dto.JogadorRequestDTO;
-import dto.JogadorResponseDTO;
+import com.goncalo.jogadores.dto.JogadorRequestDTO;
+import com.goncalo.jogadores.dto.JogadorResponseDTO;
 import jakarta.persistence.EntityNotFoundException;
-import mapper.JogadorMapper;
-import model.Jogador;
-import model.Times;
+import com.goncalo.jogadores.mapper.JogadorMapper;
+import com.goncalo.jogadores.model.Jogador;
+import com.goncalo.jogadores.model.Times;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.JogadorRepository;
-import repository.TimeRepository;
+import com.goncalo.jogadores.repository.JogadorRepository;
+import com.goncalo.jogadores.repository.TimeRepository;
 
 import java.util.List;
 import java.util.Optional;

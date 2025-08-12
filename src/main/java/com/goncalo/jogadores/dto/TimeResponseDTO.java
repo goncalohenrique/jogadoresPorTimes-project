@@ -1,4 +1,4 @@
-package dto;
+package com.goncalo.jogadores.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,12 +1,9 @@
-    package model;
+    package com.goncalo.jogadores.model;
     import com.fasterxml.jackson.annotation.JsonManagedReference;
-    import jakarta.annotation.Nullable;
     import jakarta.persistence.*;
-    import jakarta.validation.Valid;
     import jakarta.validation.constraints.NotBlank;
     import lombok.AllArgsConstructor;
     import lombok.Getter;
-    import lombok.NoArgsConstructor;
     import lombok.Setter;
 
     import java.util.ArrayList;

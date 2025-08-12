@@ -1,10 +1,10 @@
-package dto;
+package com.goncalo.jogadores.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import model.Times;
+import com.goncalo.jogadores.model.Times;
 
 @Getter
 @Setter

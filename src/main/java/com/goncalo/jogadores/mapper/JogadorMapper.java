@@ -1,7 +1,7 @@
-package mapper;
+package com.goncalo.jogadores.mapper;
 
-import dto.JogadorResponseDTO;
-import model.Jogador;
+import com.goncalo.jogadores.dto.JogadorResponseDTO;
+import com.goncalo.jogadores.model.Jogador;
 
 import java.util.List;
 import java.util.stream.Collectors;

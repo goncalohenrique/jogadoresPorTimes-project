@@ -1,15 +1,15 @@
-package controller;
-import dto.TimeRequestDTO;
-import dto.TimeResponseDTO;
+package com.goncalo.jogadores.controller;
+import com.goncalo.jogadores.dto.TimeRequestDTO;
+import com.goncalo.jogadores.dto.TimeResponseDTO;
 import jakarta.validation.Valid;
-import mapper.TimeMapper;
-import model.Times;
+import com.goncalo.jogadores.mapper.TimeMapper;
+import com.goncalo.jogadores.model.Times;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import services.TimeServices;
+import com.goncalo.jogadores.services.TimeServices;
 import java.util.List;
 import java.util.Optional;
 
