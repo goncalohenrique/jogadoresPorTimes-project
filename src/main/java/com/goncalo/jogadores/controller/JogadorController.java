@@ -22,7 +22,7 @@ public class JogadorController {
     private JogadoresServices jogadoresServices;
     private JogadorMapper jogadorMapper;
 
-    @Autowired
+
     public JogadorController(JogadoresServices jogadoresServices, JogadorMapper jogadorMapper) {
         this.jogadoresServices = jogadoresServices;
         this.jogadorMapper = jogadorMapper;

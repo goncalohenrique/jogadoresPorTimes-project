@@ -2,10 +2,12 @@ package com.goncalo.jogadores.mapper;
 
 import com.goncalo.jogadores.dto.JogadorResponseDTO;
 import com.goncalo.jogadores.model.Jogador;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class JogadorMapper {
 
     public JogadorResponseDTO jogador_para_dto(Jogador jogador) {

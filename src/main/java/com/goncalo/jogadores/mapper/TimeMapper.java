@@ -3,9 +3,12 @@ package com.goncalo.jogadores.mapper;
 import com.goncalo.jogadores.dto.JogadorResponseDTO;
 import com.goncalo.jogadores.dto.TimeResponseDTO;
 import com.goncalo.jogadores.model.Times;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class TimeMapper {
 
     private final JogadorMapper jogadorMapper;
