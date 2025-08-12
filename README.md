@@ -1,4 +1,4 @@
-Post: cadastrar jogador=
+Post(cadastrar jogador):
 {
     "nome": "Fulano",
     "salario": 250000,
