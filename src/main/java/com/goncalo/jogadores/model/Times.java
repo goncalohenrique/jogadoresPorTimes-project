@@ -1,5 +1,6 @@
     package com.goncalo.jogadores.model;
     import com.fasterxml.jackson.annotation.JsonManagedReference;
+    import com.goncalo.jogadores.dto.TimeRequestDTO;
     import jakarta.persistence.*;
     import jakarta.validation.constraints.NotBlank;
     import lombok.AllArgsConstructor;
@@ -45,7 +46,7 @@
             this.folhaSal = total;
             this.numJogadores = jogadoresid.size();
 
-            System.out.println("Folha salárial: "+ folhaSal +", número jogadores: "+numJogadores);
+            //System.out.println("Folha salárial: "+ folhaSal +", número jogadores: "+numJogadores);
             //printando dados para observação mais facil
         }
 
@@ -59,5 +60,8 @@
             atualizarFolhaSalarial();
         }
 
+        public Times(TimeRequestDTO time_teste_dto) {
+            this.nome = time_teste_dto.getNome();
 
+        }
     }
