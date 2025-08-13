@@ -1,5 +1,4 @@
 package com.goncalo.jogadores.services;
-
 import com.goncalo.jogadores.dto.JogadorRequestDTO;
 import com.goncalo.jogadores.model.Jogador;
 import com.goncalo.jogadores.model.Times;
@@ -11,36 +10,32 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
-
-//import static org.assertj.core.api.Assertions.*;
-import  static  org.assertj.core.api.Assertions.assertThat;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ActiveProfiles("test")
-class JogadoresServicesTest {
+public class JogadoresServicesITTest {
 
     @Autowired
-    JogadorRepository jogadorRepository;
-    @Autowired
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Autowired
-    TimeRepository timeRepository;
+    private JogadorRepository jogadorRepository;
+    @Autowired
+    private TimeRepository timeRepository;
+
 
     @Test
     @DisplayName("Deve cadastrar Jogadores com sucesso no BD")
-    void cadastrar_jogador_Succes() {
-
+    void cadastrar_jogadorCaso1() {
     }
 
     @Test
     void buscar_todos_jogadores() {
     }
 
-    @Test
+    @Test//Sem Mock
     @DisplayName("Deve encontrar o Jogador com sucesso do BD")
     void buscar_jogad_porIdCaso1() {
 
@@ -54,7 +49,7 @@ class JogadoresServicesTest {
         assertThat(resultado.isPresent()).isTrue();
     }
 
-    @Test
+    @Test//Sem Mock
     @DisplayName("Não deve encontrar o Jogador, quando o Jogador não existir no BD")
     void buscar_jogad_porIdCaso2() {
 
