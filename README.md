@@ -1,7 +1,5 @@
-Post(cadastrar jogador):
-{
-    "nome": "Fulano",
-    "salario": 250000,
-    "gols": 68,
-    "idTime": 1
-}
+Projeto feito exclusivamente por mim, do zero.
+
+Projeto bem completo e organizado em camadas,
+feito com Java(SpringBoot) +conexão com postgreSQL
+API Restfull +Testes únitarios(JUnit e Mockito)
