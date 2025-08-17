@@ -36,6 +36,10 @@
         }
 
         public void atualizarFolhaSalarial() {
+            if (jogadoresid==null)
+            {
+                    throw  new IllegalArgumentException("Jogador não pode ser nulo para atualizar a folha salarial!");
+            }
             Long total = 0L;
             for (Jogador jogador : jogadoresid) {
                 if (jogador.getSalario()!= null)

@@ -5,7 +5,6 @@ import com.goncalo.jogadores.model.Jogador;
 import com.goncalo.jogadores.model.Times;
 import com.goncalo.jogadores.repository.JogadorRepository;
 import com.goncalo.jogadores.repository.TimeRepository;
-import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,9 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ActiveProfiles;
+
 
 //import static org.assertj.core.api.Assertions.*;
 import  static  org.assertj.core.api.Assertions.assertThat;
@@ -78,30 +75,35 @@ class JogadoresServicesUnitTest {
         // Mock do TimeRepository(para retornar vazio)
         when(timeRepository.findById(99L)).thenReturn(Optional.empty());
 
+        //Jogador com um time inexistente
         JogadorRequestDTO jogador_teste_mock= new JogadorRequestDTO(900, "Cristiano", 20000000L, 99L);
 
         assertThatThrownBy(()->jogadoresServices.cadastrar_jogador(jogador_teste_mock))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("Time não encontrado!");
 
-        // Mock do JogadorRepository
-        Jogador jogadorCadTeste = new Jogador(jogador_teste_mock);
-        jogadorCadTeste.setIdJogador(1L);
-        when(jogadorRepository.save(any(Jogador.class))).thenReturn(jogadorCadTeste);
-
-        Jogador jogadorSalvo = jogadoresServices.cadastrar_jogador(jogador_teste_mock);
-
-        assertThat(jogadorSalvo.getIdJogador()).isEqualTo(1L);
-        verify(jogadorRepository, times(1)).save(any(Jogador.class));
-    }
-
-
-    @Test
-    void buscar_todos_jogadores() {
+        //Verifica se o jogadorRepository nunca foi chamado
+        verify(jogadorRepository, never()).save(any(Jogador.class));
     }
 
     @Test
-    void atualizar_jogador_porId() {
+    @DisplayName("Deve lançar exceção ao tentar cadastrar um jogador sem nome")
+    void cadastrar_jogadorCaso3() {
+        // Mock do TimeRepository
+        Times time = new Times();
+        time.setIdtime(8L);
+        time.setNome("Liverpool");
+        when(timeRepository.findById(8L)).thenReturn(Optional.of(time));
+
+        //Jogador sem nome
+        JogadorRequestDTO jogador_teste_mock= new JogadorRequestDTO(200, "", 200000L, 8L);
+
+        assertThatThrownBy(()->jogadoresServices.cadastrar_jogador(jogador_teste_mock))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Nome do jogador não pode ser vazio!");
+
+        //Verifica se o jogadorRepository nunca foi chamado
+        verify(jogadorRepository, never()).save(any(Jogador.class));
     }
 
     @Test

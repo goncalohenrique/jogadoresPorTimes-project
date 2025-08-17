@@ -30,10 +30,14 @@ public class JogadoresServices {
 
     public Jogador cadastrar_jogador(JogadorRequestDTO jogdto)
     {
+        if (jogdto == null)
+        {
+            throw new IllegalArgumentException("Jogador não pode ser nulo");
+        }
 
         // Só cadastra o jogador, se o time(id do time) existir e estiver cadastrado no BD
         Times time = timeRepository.findById(jogdto.getIdTime())
-                .orElseThrow(() -> new EntityNotFoundException("Time(id do time) não encontrado!"));
+                .orElseThrow(() -> new EntityNotFoundException("Time não encontrado!"));
 
             Jogador jogador_cadastrado = new Jogador();
             jogador_cadastrado.setNome(jogdto.getNome());
