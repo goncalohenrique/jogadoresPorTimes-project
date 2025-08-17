@@ -35,7 +35,7 @@ public class JogadoresServicesITTest {
     void buscar_todos_jogadores() {
     }
 
-    @Test//Sem Mock
+    @Test
     @DisplayName("Deve encontrar o Jogador com sucesso do BD")
     void buscar_jogad_porIdCaso1() {
 
@@ -49,7 +49,7 @@ public class JogadoresServicesITTest {
         assertThat(resultado.isPresent()).isTrue();
     }
 
-    @Test//Sem Mock
+    @Test
     @DisplayName("Não deve encontrar o Jogador, quando o Jogador não existir no BD")
     void buscar_jogad_porIdCaso2() {
 
