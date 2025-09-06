@@ -34,6 +34,7 @@ public class TimeMapper {
 
         timedto.setJogadores_list(jogadoresdto);
         return timedto;
+
     }
 
     public List<TimeResponseDTO> listaTimes_para_dto(List<Times> lista_times)
