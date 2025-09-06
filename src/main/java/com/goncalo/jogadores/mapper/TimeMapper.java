@@ -1,5 +1,4 @@
 package com.goncalo.jogadores.mapper;
-
 import com.goncalo.jogadores.dto.JogadorResponseDTO;
 import com.goncalo.jogadores.dto.TimeResponseDTO;
 import com.goncalo.jogadores.model.Times;
@@ -34,7 +33,6 @@ public class TimeMapper {
 
         timedto.setJogadores_list(jogadoresdto);
         return timedto;
-
     }
 
     public List<TimeResponseDTO> listaTimes_para_dto(List<Times> lista_times)
