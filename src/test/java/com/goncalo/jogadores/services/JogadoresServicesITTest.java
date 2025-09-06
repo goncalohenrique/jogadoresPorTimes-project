@@ -45,7 +45,7 @@ public class JogadoresServicesITTest {
 
         Optional<Jogador> resultado = this.jogadorRepository.findById(idJogador);
 
-        //Verifica se o jogador foi encontrado(método isPresent do Optional)
+        //Verifica se o jogador foi encontrado(metodo isPresent do Optional)
         assertThat(resultado.isPresent()).isTrue();
     }
 
@@ -57,7 +57,7 @@ public class JogadoresServicesITTest {
 
         Optional<Jogador> resultado = this.jogadorRepository.findById(idJogador);
 
-        //Verifica se o jogador não foi encontrado(método isEmpty do Optional)
+        //Verifica se o jogador não foi encontrado(metodo isEmpty do Optional)
         assertThat(resultado.isEmpty()).isTrue();
     }
 

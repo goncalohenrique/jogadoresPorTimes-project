@@ -4,7 +4,6 @@ import com.goncalo.jogadores.dto.JogadorResponseDTO;
 import jakarta.validation.Valid;
 import com.goncalo.jogadores.mapper.JogadorMapper;
 import com.goncalo.jogadores.model.Jogador;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
