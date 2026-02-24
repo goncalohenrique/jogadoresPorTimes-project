@@ -1,14 +1,22 @@
     package com.goncalo.jogadores.model;
-    import com.fasterxml.jackson.annotation.JsonManagedReference;
-    import com.goncalo.jogadores.dto.TimeRequestDTO;
-    import jakarta.persistence.*;
-    import jakarta.validation.constraints.NotBlank;
-    import lombok.AllArgsConstructor;
-    import lombok.Getter;
-    import lombok.Setter;
-
     import java.util.ArrayList;
     import java.util.List;
+
+    import com.fasterxml.jackson.annotation.JsonManagedReference;
+    import com.goncalo.jogadores.dto.TimeRequestDTO;
+
+    import jakarta.persistence.CascadeType;
+    import jakarta.persistence.Column;
+    import jakarta.persistence.Entity;
+    import jakarta.persistence.GeneratedValue;
+    import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
     @Getter
     @Setter
@@ -36,22 +44,21 @@
         }
 
         public void atualizarFolhaSalarial() {
-            if (jogadoresid==null)
-            {
-                    throw  new IllegalArgumentException("Jogador não pode ser nulo para atualizar a folha salarial!");
+            // Se a lista for nula ou vazia, define valores padrão
+            if (jogadoresid == null || jogadoresid.isEmpty()) {
+                this.folhaSal = 0L;
+                this.numJogadores = 0;
+                return;
             }
+            
             Long total = 0L;
             for (Jogador jogador : jogadoresid) {
-                if (jogador.getSalario()!= null)
-                {
+                if (jogador != null && jogador.getSalario() != null) {
                     total += jogador.getSalario();
                 }
             }
             this.folhaSal = total;
             this.numJogadores = jogadoresid.size();
-
-            //System.out.println("Folha salárial: "+ folhaSal +", número jogadores: "+numJogadores);
-            //printando dados para observação mais facil
         }
 
         public void adicionarJogador(Jogador jogador) {

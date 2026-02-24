@@ -19,7 +19,7 @@ public class JogadorRequestDTO {
     private Integer gols;
     @NotBlank(message = "Nome do jogador é obrigatório!")
     private String nome;
-    @NotNull(message = "Sálario do jogador é onrigatório!")
+    @NotNull(message = "Salário do jogador é obrigatório!")
     @Min(value = 0, message = "Salário não pode ser negativo!")
     private Long salario;
     @NotNull(message = "O id do time é obrigatório!")

@@ -1,18 +1,19 @@
 package com.goncalo.jogadores.services;
 
-import com.goncalo.jogadores.dto.TimeRequestDTO;
-import com.goncalo.jogadores.model.Times;
-import com.goncalo.jogadores.repository.TimeRepository;
-import jakarta.persistence.EntityManager;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
-import static org.assertj.core.api.Assertions.assertThat;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.goncalo.jogadores.dto.TimeRequestDTO;
+import com.goncalo.jogadores.model.Times;
+import com.goncalo.jogadores.repository.TimeRepository;
+
+import jakarta.persistence.EntityManager;
 
 @DataJpaTest
 @ActiveProfiles("test")
@@ -37,12 +38,13 @@ class TimeServicesTest {
     @Test
     @DisplayName("Deve encontrar o time com sucesso")
     void buscar_time_porIdSucces() {
-        Long idTimeTeste= 1L;
         TimeRequestDTO timeDto = new TimeRequestDTO("Corinthians");
-        this.criar_time(timeDto);
+        Times timeCriado = this.criar_time(timeDto);
+        Long idTimeTeste = timeCriado.getIdtime();
 
         Optional<Times> resultado = timeRepository.findById(idTimeTeste);
         assertThat(resultado.isPresent()).isTrue();
+        assertThat(resultado.get().getNome()).isEqualTo("Corinthians");
     }
 
     @Test
@@ -56,9 +58,9 @@ class TimeServicesTest {
     private Times criar_time(TimeRequestDTO timeTesteDto)
     {
         Times timeTeste = new Times(timeTesteDto);
-        this.entityManager.persist(timeTeste);
-        return timeTeste;
-
+        Times timeSalvo = timeRepository.save(timeTeste);
+        this.entityManager.flush();
+        return timeSalvo;
     }
 
 }
