@@ -1,6 +1,5 @@
 package com.goncalo.jogadores.services;
 import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +13,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import com.goncalo.jogadores.dto.JogadorRequestDTO;
 import com.goncalo.jogadores.model.Jogador;
 import com.goncalo.jogadores.model.Times;

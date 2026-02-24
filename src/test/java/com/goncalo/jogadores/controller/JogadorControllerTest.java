@@ -10,7 +10,6 @@ import com.goncalo.jogadores.services.JogadoresServices;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -27,10 +26,7 @@ class JogadorControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
     private JogadoresServices jogadoresServices;
-
-    @MockBean
     private JogadorMapper jogadorMapper;
 
     @Autowired
@@ -40,24 +36,6 @@ class JogadorControllerTest {
     private Jogador jogador;
     private JogadorRequestDTO jogadorRequestDTO;
     private JogadorResponseDTO jogadorResponseDTO;
-
-    @BeforeEach
-    void setUp() {
-        // Inicializando dados de teste
-        time = new Times();
-        time.setIdtime(1L);
-        time.setNome("Barcelona");
-
-        jogador = new Jogador();
-        jogador.setIdJogador(1L);
-        jogador.setNome("Messi");
-        jogador.setGols(900);
-        jogador.setSalario(20000000L);
-        jogador.setTime(time);
-
-        jogadorRequestDTO = new JogadorRequestDTO(900, "Messi", 20000000L, 1L);
-        jogadorResponseDTO = new JogadorResponseDTO(1L, 900, "Messi", 20000000L, 1L, time);
-    }
 
     @Test
     @DisplayName("Deve cadastrar um novo jogador com sucesso")

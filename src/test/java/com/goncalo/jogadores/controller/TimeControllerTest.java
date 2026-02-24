@@ -1,19 +1,16 @@
 package com.goncalo.jogadores.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.goncalo.jogadores.dto.JogadorResponseDTO;
 import com.goncalo.jogadores.dto.TimeRequestDTO;
 import com.goncalo.jogadores.dto.TimeResponseDTO;
 import com.goncalo.jogadores.mapper.TimeMapper;
 import com.goncalo.jogadores.model.Times;
 import com.goncalo.jogadores.services.TimeServices;
 import jakarta.persistence.EntityNotFoundException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -36,10 +33,7 @@ class TimeControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
     private TimeServices timeServices;
-
-    @MockBean
     private TimeMapper timeMapper;
 
     @Autowired
@@ -48,19 +42,6 @@ class TimeControllerTest {
     private Times time;
     private TimeRequestDTO timeRequestDTO;
     private TimeResponseDTO timeResponseDTO;
-
-    @BeforeEach
-    void setUp() {
-        time = new Times();
-        time.setIdtime(1L);
-        time.setNome("Barcelona");
-        time.setFolhaSal(20000000L);
-        time.setNumJogadores(1);
-        time.setJogadoresid(new ArrayList<>());
-
-        timeRequestDTO = new TimeRequestDTO("Barcelona");
-        timeResponseDTO = new TimeResponseDTO(1L, "Barcelona", 1, 20000000L, new ArrayList<>());
-    }
 
     @Test
     @DisplayName("Deve cadastrar um novo time com sucesso")

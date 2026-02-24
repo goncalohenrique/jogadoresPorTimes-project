@@ -18,28 +18,17 @@ import java.util.Map;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
-    /**
-     * Timestamp do erro
-     */
+
     private LocalDateTime timestamp;
 
-    /**
-     * Código HTTP de status
-     */
+    //Código HTTP de status
     private int status;
 
-    /**
-     * Tipo de erro
-     */
+    //Tipo de erro
     private String error;
 
-    /**
-     * Mensagem de erro detalhada
-     */
     private String message;
 
-    /**
-     * Mapa de erros de validação (campo -> mensagem)
-     */
+    //Mapa de erros de validação (campo -> mensagem)
     private Map<String, String> validationErrors;
 }
