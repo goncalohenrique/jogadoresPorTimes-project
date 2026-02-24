@@ -42,7 +42,23 @@ API disponível em: `http://localhost:8080`
 
 ---
 
-## 📚 Endpoints Principais
+## � Monitoramento e Documentação
+
+### Health Check (Actuator) 🏥
+
+Monitora a saúde da aplicação e fornece informações sobre o sistema em execução.
+
+- **Health Status:** `http://localhost:8080/actuator/health`
+  - Verifica estado da aplicação (UP/DOWN)
+  - Informações de banco de dados
+  - Status de componentes críticos
+- **Informações da App:** `http://localhost:8080/actuator/info`
+  - Versão da aplicação
+  - Metadados do projeto
+
+---
+
+## �📚 Endpoints Principais
 
 ### Jogadores
 
@@ -71,7 +87,6 @@ API disponível em: `http://localhost:8080`
 - 16 Testes de controllers com @WebMvcTest
 - 6 Testes adicionais
 
-
 ---
 
 ## 📄 Documentação
@@ -88,7 +103,8 @@ API disponível em: `http://localhost:8080`
 ✅ Validação rigorosa de dados (DTOs)  
 ✅ Testes robustos (unitários, integração, API)  
 ✅ Tratamento de erros padronizado  
-✅ Documentação completa
+✅ Documentação completa  
+✅ **Health Check (Actuator)** para monitoramento da aplicação
 
 ---
 
@@ -102,8 +118,8 @@ API disponível em: `http://localhost:8080`
 - **Logging:** SLF4J + Logback
 - **Validação:** Jakarta Validation
 - **Serialização:** Jackson
+- **Monitoramento:** Spring Boot Actuator
 
 ---
 
 **Projeto criado do zero com arquitetura em camadas, testes robustos e documentação completa.**
-

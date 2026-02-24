@@ -10,7 +10,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -20,7 +19,6 @@ import jakarta.persistence.EntityNotFoundException;
  * Fornece respostas padronizadas para diferentes tipos de exceção
  */
 @ControllerAdvice
-@RestController
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
